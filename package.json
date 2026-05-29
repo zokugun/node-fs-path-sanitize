@@ -1,6 +1,6 @@
 {
 	"name": "@zokugun/fs-path-sanitize",
-	"description": "",
+	"description": "sanitize filesystem paths and path segments",
 	"version": "0.0.0",
 	"author": {
 		"name": "Baptiste Augrain",
