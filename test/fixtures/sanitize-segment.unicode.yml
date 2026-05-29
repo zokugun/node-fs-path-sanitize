@@ -1,0 +1,248 @@
+- segment: "bar\u202Ecod.bat"
+  replacement: '!'
+  sanitize:
+    posix: 'barcod.bat'
+    universal: 'bar!cod.bat'
+    linux.safe: 'bar!cod.bat'
+    linux.esc.single: 'bar!cod.bat'
+    linux.esc.ansic: "bar\u202Ecod.bat"
+    macos.safe: 'bar!cod.bat'
+    windows.exfat: 'bar!cod.bat'
+    windows.fat32: 'bar!cod.bat'
+    windows.ntfs: 'bar!cod.bat'
+    windows.safe: 'bar!cod.bat'
+
+- segment: "hello\u202Dworld"
+  replacement: '!'
+  sanitize:
+    posix: 'helloworld'
+    universal: 'hello!world'
+    linux.safe: 'hello!world'
+    linux.esc.single: 'hello!world'
+    linux.esc.ansic: "hello\u202Dworld"
+    macos.safe: 'hello!world'
+    windows.exfat: 'hello!world'
+    windows.fat32: 'hello!world'
+    windows.ntfs: 'hello!world'
+    windows.safe: 'hello!world'
+
+- segment: "test\u202A\u202B\u202C"
+  replacement: '!'
+  sanitize:
+    posix: 'test'
+    universal: 'test!'
+    linux.safe: 'test!'
+    linux.esc.single: 'test!'
+    linux.esc.ansic: "test\u202A\u202B\u202C"
+    macos.safe: 'test!'
+    windows.exfat: 'test!'
+    windows.fat32: 'test!'
+    windows.ntfs: 'test!'
+    windows.safe: 'test!'
+
+- name: foobar00
+  segment: "foo\u0000bar"
+  replacement: '!'
+  sanitize:
+    posix: 'foobar'
+    universal: 'foo!bar'
+    linux.safe: 'foo!bar'
+    linux.esc.single: 'foo!bar'
+    linux.esc.ansic: "foo!bar"
+    macos.safe: 'foo!bar'
+    windows.exfat: 'foo!bar'
+    windows.fat32: 'foo!bar'
+    windows.ntfs: 'foo!bar'
+    windows.safe: 'foo!bar'
+
+- name: foobar7F
+  segment: "foo\u007Fbar"
+  replacement: '!'
+  sanitize:
+    posix: 'foobar'
+    universal: 'foo!bar'
+    linux.safe: 'foo!bar'
+    linux.esc.single: 'foo!bar'
+    linux.esc.ansic: "foo\u007Fbar"
+    macos.safe: 'foo!bar'
+    windows.exfat: 'foo!bar'
+    windows.fat32: 'foo!bar'
+    windows.ntfs: 'foo!bar'
+    windows.safe: 'foo!bar'
+
+- name: foobar80
+  segment: "foo\u0080bar"
+  replacement: '!'
+  sanitize:
+    posix: 'foobar'
+    universal: 'foo!bar'
+    linux.safe: 'foo!bar'
+    linux.esc.single: 'foo!bar'
+    linux.esc.ansic: "foo\u0080bar"
+    macos.safe: 'foo!bar'
+    windows.exfat: 'foo!bar'
+    windows.fat32: 'foo!bar'
+    windows.ntfs: 'foo!bar'
+    windows.safe: 'foo!bar'
+
+- name: foobar200B
+  segment: "foo\u200Bbar"
+  replacement: '!'
+  sanitize:
+    posix: 'foobar'
+    universal: 'foo!bar'
+    linux.safe: 'foo!bar'
+    linux.esc.single: 'foo!bar'
+    linux.esc.ansic: "foo\u200Bbar"
+    macos.safe: 'foo!bar'
+    windows.exfat: 'foo!bar'
+    windows.fat32: 'foo!bar'
+    windows.ntfs: 'foo!bar'
+    windows.safe: 'foo!bar'
+
+- name: foobarFEFF
+  segment: "foo\uFEFFbar"
+  replacement: '!'
+  sanitize:
+    posix: 'foobar'
+    universal: 'foo!bar'
+    linux.safe: 'foo!bar'
+    linux.esc.single: 'foo!bar'
+    linux.esc.ansic: "foo\uFEFFbar"
+    macos.safe: 'foo!bar'
+    windows.exfat: 'foo!bar'
+    windows.fat32: 'foo!bar'
+    windows.ntfs: 'foo!bar'
+    windows.safe: 'foo!bar'
+
+- name: foobar2028
+  segment: "foo\u2028bar"
+  replacement: '!'
+  sanitize:
+    posix: 'foobar'
+    universal: 'foo!bar'
+    linux.safe: 'foo!bar'
+    linux.esc.single: 'foo!bar'
+    linux.esc.ansic: "foo\u2028bar"
+    macos.safe: 'foo!bar'
+    windows.exfat: 'foo!bar'
+    windows.fat32: 'foo!bar'
+    windows.ntfs: 'foo!bar'
+    windows.safe: 'foo!bar'
+
+- name: foobar2029
+  segment: "foo\u2029bar"
+  replacement: '!'
+  sanitize:
+    posix: 'foobar'
+    universal: 'foo!bar'
+    linux.safe: 'foo!bar'
+    linux.esc.single: 'foo!bar'
+    linux.esc.ansic: "foo\u2029bar"
+    macos.safe: 'foo!bar'
+    windows.exfat: 'foo!bar'
+    windows.fat32: 'foo!bar'
+    windows.ntfs: 'foo!bar'
+    windows.safe: 'foo!bar'
+
+- name: foobarA0
+  segment: "foo\u00A0bar"
+  replacement: '!'
+  sanitize:
+    posix: 'foobar'
+    universal: 'foo!bar'
+    linux.safe: 'foo!bar'
+    linux.esc.single: 'foo bar'
+    linux.esc.ansic: "foo bar"
+    macos.safe: 'foo!bar'
+    windows.exfat: 'foo bar'
+    windows.fat32: 'foo bar'
+    windows.ntfs: 'foo bar'
+    windows.safe: 'foo bar'
+
+- name: foobar2000
+  segment: "foo\u2000bar"
+  replacement: '!'
+  sanitize:
+    posix: 'foobar'
+    universal: 'foo!bar'
+    linux.safe: 'foo!bar'
+    linux.esc.single: 'foo bar'
+    linux.esc.ansic: "foo bar"
+    macos.safe: 'foo!bar'
+    windows.exfat: 'foo bar'
+    windows.fat32: 'foo bar'
+    windows.ntfs: 'foo bar'
+    windows.safe: 'foo bar'
+
+- name: foobar3000
+  segment: "foo\u3000bar"
+  replacement: '!'
+  sanitize:
+    posix: 'foobar'
+    universal: 'foo!bar'
+    linux.safe: 'foo!bar'
+    linux.esc.single: 'foo bar'
+    linux.esc.ansic: "foo bar"
+    macos.safe: 'foo!bar'
+    windows.exfat: 'foo bar'
+    windows.fat32: 'foo bar'
+    windows.ntfs: 'foo bar'
+    windows.safe: 'foo bar'
+
+- name: foobar00A02000
+  segment: "foo  \u00A0  \u2000  bar"
+  replacement: '!'
+  sanitize:
+    posix: 'foobar'
+    universal: 'foo!bar'
+    linux.safe: 'foo!bar'
+    linux.esc.single: 'foo        bar'
+    linux.esc.ansic: "foo        bar"
+    macos.safe: 'foo!bar'
+    windows.exfat: 'foo        bar'
+    windows.fat32: 'foo        bar'
+    windows.ntfs: 'foo        bar'
+    windows.safe: 'foo        bar'
+
+- segment: "foo\t\n\rbar"
+  replacement: '!'
+  sanitize:
+    posix: 'foobar'
+    universal: 'foo!bar'
+    linux.safe: 'foo!bar'
+    linux.esc.single: 'foo!bar'
+    linux.esc.ansic: "foo\t\n\rbar"
+    macos.safe: 'foo!bar'
+    windows.exfat: 'foo!bar'
+    windows.fat32: 'foo!bar'
+    windows.ntfs: 'foo!bar'
+    windows.safe: 'foo!bar'
+
+- segment: "foo\u202E/bar:baz\u200B.txt"
+  replacement: '!'
+  sanitize:
+    posix: 'foobarbaz.txt'
+    universal: 'foo!bar!baz!.txt'
+    linux.safe: 'foo!bar:baz!.txt'
+    linux.esc.single: 'foo!bar:baz!.txt'
+    linux.esc.ansic: "foo\u202E!bar:baz\u200B.txt"
+    macos.safe: 'foo!bar!baz!.txt'
+    windows.exfat: 'foo!bar!baz!.txt'
+    windows.fat32: 'foo!bar!baz!.txt'
+    windows.ntfs: 'foo!bar!baz!.txt'
+    windows.safe: 'foo!bar!baz!.txt'
+
+- segment: "foo\u200D/bar:baz\u200D.txt"
+  replacement: '!'
+  sanitize:
+    posix: 'foobarbaz.txt'
+    universal: "foo\u200D!bar!baz\u200D.txt"
+    linux.safe: "foo\u200D!bar:baz\u200D.txt"
+    linux.esc.single: "foo\u200D!bar:baz\u200D.txt"
+    linux.esc.ansic: "foo\u200D!bar:baz\u200D.txt"
+    macos.safe: "foo\u200D!bar!baz\u200D.txt"
+    windows.exfat: "foo\u200D!bar!baz\u200D.txt"
+    windows.fat32: "foo\u200D!bar!baz\u200D.txt"
+    windows.ntfs: "foo\u200D!bar!baz\u200D.txt"
+    windows.safe: "foo\u200D!bar!baz\u200D.txt"

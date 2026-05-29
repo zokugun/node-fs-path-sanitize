@@ -1,0 +1,83 @@
+- name: empty.rep=x
+  segment: ''
+  replacement: '!'
+  sanitize:
+    posix: ''
+    universal: '!'
+    linux.safe: '!'
+    linux.esc.single: '!'
+    linux.esc.ansic: '!'
+    macos.safe: '!'
+    windows.exfat: '!'
+    windows.fat32: '!'
+    windows.ntfs: '!'
+    windows.safe: '!'
+
+- name: empty.on=u
+  segment: ''
+  onEmpty: addUnderscore
+  sanitize:
+    posix: '_'
+    universal: '_'
+    linux.safe: '_'
+    linux.esc.single: '_'
+    linux.esc.ansic: '_'
+    macos.safe: '_'
+    windows.exfat: '_'
+    windows.fat32: '_'
+    windows.ntfs: '_'
+    windows.safe: '_'
+
+- name: empty.on=x
+  segment: ''
+  onEmpty: addExclamation
+  sanitize:
+    posix: ''
+    universal: '!'
+    linux.safe: '!'
+    linux.esc.single: '!'
+    linux.esc.ansic: '!'
+    macos.safe: '!'
+    windows.exfat: '!'
+    windows.fat32: '!'
+    windows.ntfs: '!'
+    windows.safe: '!'
+
+- segment: '.dotfile'
+  sanitize:
+    posix: '.dotfile'
+    universal: '.dotfile'
+    linux.safe: '.dotfile'
+    linux.esc.single: '.dotfile'
+    linux.esc.ansic: '.dotfile'
+    macos.safe: '.dotfile'
+    windows.exfat: '.dotfile'
+    windows.fat32: '.dotfile'
+    windows.ntfs: '.dotfile'
+    windows.safe: '.dotfile'
+
+- segment: "\0e?r*r:o<r>-lo/<g>.txt"
+  sanitize:
+    posix: 'error-log.txt'
+    universal: 'error-log.txt'
+    linux.safe: 'err:or-log.txt'
+    linux.esc.single: 'e?r*r:o<r>-lo<g>.txt'
+    linux.esc.ansic: 'e?r*r:o<r>-lo<g>.txt'
+    macos.safe: 'error-log.txt'
+    windows.exfat: 'error-log.txt'
+    windows.fat32: 'error-log.txt'
+    windows.ntfs: 'error-log.txt'
+    windows.safe: 'error-log.txt'
+
+- segment: ':\\to:d*o/-l\"i?s>t|.t<x?t'
+  sanitize:
+    posix: 'todo-list.txt'
+    universal: 'todo-list.txt'
+    linux.safe: ':to:do-list.txt'
+    linux.esc.single: ':to:d*o-l"i?s>t|.t<x?t'
+    linux.esc.ansic: ':to:d*o-l"i?s>t|.t<x?t'
+    macos.safe: 'todo-list.txt'
+    windows.exfat: 'todo-list.txt'
+    windows.fat32: 'todo-list.txt'
+    windows.ntfs: 'todo-list.txt'
+    windows.safe: 'todo-list.txt'

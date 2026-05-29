@@ -1,0 +1,37 @@
+- segment: 'file.backup.old.txt'
+  maxLength: 15
+  sanitize:
+    universal: 'file.backup.txt'
+
+- segment: 'file.backup.old.txt'
+  maxLength: 10
+  sanitize:
+    universal: 'file.b.txt'
+
+- segment: '.gitignore'
+  sanitize:
+    universal: '.gitignore'
+
+- segment: '.gitignore...'
+  sanitize:
+    universal: '.gitignore'
+
+- segment: 'file.name.here'
+  maxLength: 10
+  sanitize:
+    universal: 'file..here'
+
+- segment: 'file.name.here'
+  maxLength: 8
+  sanitize:
+    universal: 'fil.here'
+
+- segment: 'filename'
+  maxLength: 8
+  sanitize:
+    universal: 'filename'
+
+- segment: 'verylongfilename'
+  maxLength: 8
+  sanitize:
+    universal: 'verylong'

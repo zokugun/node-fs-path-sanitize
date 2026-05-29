@@ -1,0 +1,180 @@
+- segment: 'CONTEXT'
+  maxLength: 3
+  sanitize:
+    posix: 'CON'
+    universal: ''
+    linux.safe: 'CON'
+    macos.safe: 'CON'
+    windows.exfat: 'CON'
+    windows.fat32: ''
+    windows.ntfs: ''
+    windows.safe: ''
+
+- segment: 'CONxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
+  maxLength: 3
+  sanitize:
+    posix: 'CON'
+    universal: ''
+    linux.safe: 'CON'
+    macos.safe: 'CON'
+    windows.exfat: 'CON'
+    windows.fat32: ''
+    windows.ntfs: ''
+    windows.safe: ''
+
+- segment: 'PRNTHING'
+  maxLength: 3
+  sanitize:
+    posix: 'PRN'
+    universal: ''
+    linux.safe: 'PRN'
+    macos.safe: 'PRN'
+    windows.exfat: 'PRN'
+    windows.fat32: ''
+    windows.ntfs: ''
+    windows.safe: ''
+
+- segment: 'COM1EXTRA'
+  maxLength: 4
+  sanitize:
+    posix: 'COM1'
+    universal: ''
+    linux.safe: 'COM1'
+    macos.safe: 'COM1'
+    windows.exfat: 'COM1'
+    windows.fat32: ''
+    windows.ntfs: ''
+    windows.safe: ''
+
+- segment: 'AUXILIARY'
+  maxLength: 3
+  sanitize:
+    posix: 'AUX'
+    universal: ''
+    linux.safe: 'AUX'
+    macos.safe: 'AUX'
+    windows.exfat: 'AUX'
+    windows.fat32: ''
+    windows.ntfs: ''
+    windows.safe: ''
+
+- segment: 'hello world'
+  maxLength: 6
+  sanitize:
+    posix: 'hellow'
+    universal: 'hellow'
+    linux.safe: 'hellow'
+    linux.esc.single: 'hello'
+    linux.esc.ansic: 'hello'
+    macos.safe: 'hellow'
+    windows.exfat: 'hello'
+    windows.fat32: 'hello'
+    windows.ntfs: 'hello'
+    windows.safe: 'hello'
+
+- segment: 'foo bar baz'
+  maxLength: 8
+  sanitize:
+    posix: 'foobarba'
+    universal: 'foobarba'
+    linux.safe: 'foobarba'
+    linux.esc.single: 'foo bar'
+    linux.esc.ansic: 'foo bar'
+    macos.safe: 'foobarba'
+    windows.exfat: 'foo bar'
+    windows.fat32: 'foo bar'
+    windows.ntfs: 'foo bar'
+    windows.safe: 'foo bar'
+
+- segment: 'ab cd ef'
+  maxLength: 6
+  sanitize:
+    posix: 'abcdef'
+    universal: 'abcdef'
+    linux.safe: 'abcdef'
+    linux.esc.single: 'ab cd'
+    linux.esc.ansic: 'ab cd'
+    macos.safe: 'abcdef'
+    windows.exfat: 'ab cd'
+    windows.fat32: 'ab cd'
+    windows.ntfs: 'ab cd'
+    windows.safe: 'ab cd'
+
+- segment: 'test. . .'
+  maxLength: 6
+  sanitize:
+    posix: 'test..'
+    universal: 'test'
+    linux.safe: 'test..'
+    linux.esc.single: 'test..'
+    linux.esc.ansic: 'test..'
+    macos.safe: 'test..'
+    windows.exfat: 'test..'
+    windows.fat32: 'test'
+    windows.ntfs: 'test'
+    windows.safe: 'test'
+
+- segment: 'dots....'
+  maxLength: 6
+  sanitize:
+    posix: 'dots..'
+    universal: 'dots'
+    linux.safe: 'dots..'
+    linux.esc.single: 'dots..'
+    linux.esc.ansic: 'dots..'
+    macos.safe: 'dots..'
+    windows.exfat: 'dots..'
+    windows.fat32: 'dots'
+    windows.ntfs: 'dots'
+    windows.safe: 'dots'
+
+- segment: 'hello world test.txt'
+  maxLength: 16
+  sanitize:
+    posix: 'helloworldte.txt'
+    universal: 'helloworldte.txt'
+    linux.safe: 'helloworldte.txt'
+    linux.esc.single: 'hello world.txt'
+    linux.esc.ansic: 'hello world.txt'
+    macos.safe: 'helloworldte.txt'
+    windows.exfat: 'hello world.txt'
+    windows.fat32: 'hello world.txt'
+    windows.ntfs: 'hello world.txt'
+    windows.safe: 'hello world.txt'
+
+- segment: 'test.. .txt'
+  maxLength: 8
+  sanitize:
+    posix: 'test.txt'
+    universal: 'test.txt'
+    linux.safe: 'test.txt'
+    linux.esc.single: 'test.txt'
+    linux.esc.ansic: 'test.txt'
+    macos.safe: 'test.txt'
+    windows.exfat: 'test.txt'
+    windows.fat32: 'test.txt'
+    windows.ntfs: 'test.txt'
+    windows.safe: 'test.txt'
+
+- segment: 'very_very_very_very_very_very_very_very_very_very_very_very_very_very_very_very_very_very_very_very_very_very_very_very_very_very_very_long_filename.txt'
+  sanitize:
+    universal: 'very_very_very_very_very_very_very_very_very_very_very_very_very_very_very_very_very_very_very_v.txt'
+
+- segment: 'very_very_very_very_very_very_very_very_very_very_very_very_very_very_very_very_very_very_very_very_very_very_very_very_very_very_very_long_filename.txt'
+  maxLength: 180
+  sanitize:
+    universal: 'very_very_very_very_very_very_very_very_very_very_very_very_very_very_very_very_very_very_very_very_very_very_very_very_very_very_very_long_filename.txt'
+
+- segment: 'foo.asdfghjkl'
+  maxLength: 5
+  sanitize:
+    universal: '.asdfghjkl'
+
+- segment: 'very_very_very_very_very_very_very_very_very_very_very_very_very_very_very_very_very_very_very_very_very_very_very_very_very_very_very_long_filenam'
+  sanitize:
+    universal: 'very_very_very_very_very_very_very_very_very_very_very_very_very_very_very_very_very_very_very_very_'
+
+- segment: 'very_very_very_very_very_very_very_very_very_very_very_very_very_very_very_very_very_very_very_very_very_very_very_very_very_very_very_long_filename'
+  maxLength: 20
+  sanitize:
+    universal: 'very_very_very_very_'

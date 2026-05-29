@@ -1,0 +1,104 @@
+- segment: "👨‍👩‍👧‍👦👨‍👩‍👧‍👦👨‍👩‍👧‍👦"
+  replacement: '!'
+  maxLength: 20
+  sanitize:
+    posix: ''
+    universal: "👨‍👩‍👧‍👦"
+    linux.safe: "👨‍👩‍👧‍👦"
+    linux.esc.single: "👨‍👩‍👧‍👦"
+    linux.esc.ansic: "👨‍👩‍👧‍👦"
+    macos.safe: "👨‍👩‍👧‍👦"
+    windows.exfat: "👨‍👩‍👧‍👦"
+    windows.fat32: "👨‍👩‍👧‍👦"
+    windows.ntfs: "👨‍👩‍👧‍👦"
+    windows.safe: "👨‍👩‍👧‍👦"
+
+- segment: "test👨‍👩‍👧‍👦.txt"
+  replacement: '!'
+  maxLength: 12
+  sanitize:
+    posix: 'test.txt'
+    universal: 'test.txt'
+    linux.safe: 'test.txt'
+    linux.esc.single: 'test.txt'
+    linux.esc.ansic: 'test.txt'
+    macos.safe: 'test.txt'
+    windows.exfat: 'test.txt'
+    windows.fat32: 'test.txt'
+    windows.ntfs: 'test.txt'
+    windows.safe: 'test.txt'
+
+- segment: "𝐀𝐀𝐀𝐀𝐀𝐀𝐀𝐀𝐀𝐀𝐀𝐀𝐀𝐀𝐀𝐀𝐀𝐀𝐀𝐀"
+  replacement: '!'
+  maxLength: 10
+  sanitize:
+    posix: ''
+    universal: "𝐀𝐀𝐀𝐀𝐀"
+    linux.safe: "𝐀𝐀𝐀𝐀𝐀"
+    linux.esc.single: "𝐀𝐀𝐀𝐀𝐀"
+    linux.esc.ansic: "𝐀𝐀𝐀𝐀𝐀"
+    macos.safe: "𝐀𝐀𝐀𝐀𝐀"
+    windows.exfat: "𝐀𝐀𝐀𝐀𝐀"
+    windows.fat32: "𝐀𝐀𝐀𝐀𝐀"
+    windows.ntfs: "𝐀𝐀𝐀𝐀𝐀"
+    windows.safe: "𝐀𝐀𝐀𝐀𝐀"
+
+- segment: "é́é́é́é́é́é́é́é́é́é́"
+  replacement: '!'
+  maxLength: 10
+  sanitize:
+    posix: ''
+    universal: "é́é́é́é́é́"
+    linux.safe: "é́é́é́é́é́"
+    linux.esc.single: "é́é́é́é́é́"
+    linux.esc.ansic: "é́é́é́é́é́"
+    macos.safe: "é́é́é́é́é́"
+    windows.exfat: "é́é́é́é́é́"
+    windows.fat32: "é́é́é́é́é́"
+    windows.ntfs: "é́é́é́é́é́"
+    windows.safe: "é́é́é́é́é́"
+
+- segment: "🇺🇸🇬🇧🇫🇷🇩🇪🇯🇵🇨🇳🇰🇷🇮🇹🇪🇸🇨🇦"
+  replacement: '!'
+  maxLength: 12
+  sanitize:
+    posix: ''
+    universal: "🇺🇸🇬🇧🇫🇷"
+    linux.safe: "🇺🇸🇬🇧🇫🇷"
+    linux.esc.single: "🇺🇸🇬🇧🇫🇷"
+    linux.esc.ansic: "🇺🇸🇬🇧🇫🇷"
+    macos.safe: "🇺🇸🇬🇧🇫🇷"
+    windows.exfat: "🇺🇸🇬🇧🇫🇷"
+    windows.fat32: "🇺🇸🇬🇧🇫🇷"
+    windows.ntfs: "🇺🇸🇬🇧🇫🇷"
+    windows.safe: "🇺🇸🇬🇧🇫🇷"
+
+- segment: "👨‍👩‍👧‍👦👨‍👩‍👧‍👦👨‍👩‍👧‍👦.txt"
+  replacement: '!'
+  maxLength: 15
+  sanitize:
+    posix: '.txt'
+    universal: "👨‍👩‍👧‍👦.txt"
+    linux.safe: "👨‍👩‍👧‍👦.txt"
+    linux.esc.single: "👨‍👩‍👧‍👦.txt"
+    linux.esc.ansic: "👨‍👩‍👧‍👦.txt"
+    macos.safe: "👨‍👩‍👧‍👦.txt"
+    windows.exfat: "👨‍👩‍👧‍👦.txt"
+    windows.fat32: "👨‍👩‍👧‍👦.txt"
+    windows.ntfs: "👨‍👩‍👧‍👦.txt"
+    windows.safe: "👨‍👩‍👧‍👦.txt"
+
+- segment: "test👨‍👩‍👧‍👦👨‍👩‍👧‍👦.txt"
+  replacement: '!'
+  maxLength: 30
+  sanitize:
+    posix: 'test.txt'
+    universal: "test👨‍👩‍👧‍👦👨‍👩‍👧‍👦.txt"
+    linux.safe: "test👨‍👩‍👧‍👦👨‍👩‍👧‍👦.txt"
+    linux.esc.single: "test👨‍👩‍👧‍👦👨‍👩‍👧‍👦.txt"
+    linux.esc.ansic: "test👨‍👩‍👧‍👦👨‍👩‍👧‍👦.txt"
+    macos.safe: "test👨‍👩‍👧‍👦👨‍👩‍👧‍👦.txt"
+    windows.exfat: "test👨‍👩‍👧‍👦👨‍👩‍👧‍👦.txt"
+    windows.fat32: "test👨‍👩‍👧‍👦👨‍👩‍👧‍👦.txt"
+    windows.ntfs: "test👨‍👩‍👧‍👦👨‍👩‍👧‍👦.txt"
+    windows.safe: "test👨‍👩‍👧‍👦👨‍👩‍👧‍👦.txt"

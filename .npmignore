@@ -1,0 +1,12 @@
+*
+*/**
+**/.DS_Store
+!package.json
+!LICENSE
+!README.md
+!lib/**/*.js
+!lib/**/*.d.ts
+!lib/**/*.cjs
+!lib/**/*.mjs
+!lib/**/*.d.cts
+!lib/**/*.d.mts

@@ -1,0 +1,156 @@
+- path: '/a/b/c.txt'
+  sanitize:
+    posix: '/a/b/c.txt'
+    universal: '/a/b/c.txt'
+    linux.safe: '/a/b/c.txt'
+    linux.esc.single: '/a/b/c.txt'
+    linux.esc.ansic: '/a/b/c.txt'
+    macos.safe: '/a/b/c.txt'
+    windows.exfat:
+      error: 'Invalid Windows path: Unix path'
+    windows.fat32:
+      error: 'Invalid Windows path: Unix path'
+    windows.ntfs:
+      error: 'Invalid Windows path: Unix path'
+    windows.safe:
+      error: 'Invalid Windows path: Unix path'
+
+- path: 'C:\Users\'
+  sanitize:
+    posix:
+      error: 'Invalid Unix path: Windows path'
+    universal: 'C:\Users\'
+    linux.safe:
+      error: 'Invalid Unix path: Windows path'
+    linux.esc.single:
+      error: 'Invalid Unix path: Windows path'
+    linux.esc.ansic:
+      error: 'Invalid Unix path: Windows path'
+    macos.safe:
+      error: 'Invalid Unix path: Windows path'
+    windows.exfat: 'C:\Users\'
+    windows.fat32: 'C:\Users\'
+    windows.ntfs: 'C:\Users\'
+    windows.safe: 'C:\Users\'
+
+- path: 'C:\abc\$Extend'
+  sanitize:
+    universal: 'C:\abc\Extend'
+    windows.exfat: 'C:\abc\$Extend'
+    windows.fat32: 'C:\abc\$Extend'
+    windows.ntfs: 'C:\abc\$Extend'
+    windows.safe: 'C:\abc\$Extend'
+
+- path: 'C:\$Extend_'
+  sanitize:
+    universal: 'C:\Extend_'
+    windows.exfat: 'C:\$Extend_'
+    windows.fat32: 'C:\$Extend_'
+    windows.ntfs: 'C:\$Extend_'
+    windows.safe: 'C:\$Extend_'
+
+- path: 'C:\$Extend'
+  onKeyword: addTrailingUnderscore
+  sanitize:
+    universal: 'C:\Extend'
+    windows.exfat: 'C:\$Extend'
+    windows.fat32: 'C:\$Extend'
+    windows.ntfs: 'C:\$Extend_'
+    windows.safe: 'C:\$Extend_'
+
+- path: '/a/b/c?d'
+  replacement: '_'
+  sanitize:
+    posix: '/a/b/c_d'
+    universal: '/a/b/c_d'
+    linux.safe: '/a/b/c_d'
+    linux.esc.single: '/a/b/c?d'
+    linux.esc.ansic: '/a/b/c?d'
+    macos.safe: '/a/b/c_d'
+
+- name: empty
+  path: ''
+  sanitize:
+    posix: ''
+    universal: ''
+    linux.safe: ''
+    linux.esc.single: ''
+    linux.esc.ansic: ''
+    macos.safe: ''
+    windows.exfat: ''
+    windows.fat32: ''
+    windows.ntfs: ''
+    windows.safe: ''
+
+- path: 'abc'
+  sanitize:
+    posix: 'abc'
+    universal: 'abc'
+    linux.safe: 'abc'
+    linux.esc.single: 'abc'
+    linux.esc.ansic: 'abc'
+    macos.safe: 'abc'
+    windows.exfat: 'abc'
+    windows.fat32: 'abc'
+    windows.ntfs: 'abc'
+    windows.safe: 'abc'
+
+- path: 'a/b/c'
+  replacement: ''
+  sanitize:
+    posix: 'a/b/c'
+    universal: 'a/b/c'
+    linux.safe: 'a/b/c'
+    linux.esc.single: 'a/b/c'
+    linux.esc.ansic: 'a/b/c'
+    macos.safe: 'a/b/c'
+    windows.exfat:
+       error: 'Invalid Windows path: Unix path'
+    windows.fat32:
+       error: 'Invalid Windows path: Unix path'
+    windows.ntfs:
+       error: 'Invalid Windows path: Unix path'
+    windows.safe:
+       error: 'Invalid Windows path: Unix path'
+
+- path: 'a\b\c'
+  replacement: ''
+  sanitize:
+    posix:
+      error: 'Invalid Unix path: Windows path'
+    universal: 'a\b\c'
+    linux.safe:
+      error: 'Invalid Unix path: Windows path'
+    linux.esc.single:
+      error: 'Invalid Unix path: Windows path'
+    linux.esc.ansic:
+      error: 'Invalid Unix path: Windows path'
+    macos.safe:
+      error: 'Invalid Unix path: Windows path'
+    windows.exfat: 'a\b\c'
+    windows.fat32: 'a\b\c'
+    windows.ntfs: 'a\b\c'
+    windows.safe: 'a\b\c'
+
+- path: 'a/b\c'
+  replacement: ''
+  sanitize:
+    posix:
+      error: 'Invalid Unix path: Windows path'
+    universal: 'a\b\c'
+    linux.safe:
+      error: 'Invalid Unix path: Windows path'
+    linux.esc.single:
+      error: 'Invalid Unix path: Windows path'
+    linux.esc.ansic:
+      error: 'Invalid Unix path: Windows path'
+    macos.safe:
+      error: 'Invalid Unix path: Windows path'
+    windows.exfat:
+       error: 'Invalid Windows path: Unix path'
+    windows.fat32:
+       error: 'Invalid Windows path: Unix path'
+    windows.ntfs:
+       error: 'Invalid Windows path: Unix path'
+    windows.safe:
+       error: 'Invalid Windows path: Unix path'

@@ -1,0 +1,159 @@
+- path: ''
+  resolve: true
+  sanitize:
+    posix: '/users/user'
+    universal: '/users/user'
+    linux.safe: '/users/user'
+    linux.esc.single: '/users/user'
+    linux.esc.ansic: '/users/user'
+    macos.safe: '/users/user'
+    windows.exfat: 'C:\Users\User'
+    windows.fat32: 'C:\Users\User'
+    windows.ntfs: 'C:\Users\User'
+    windows.safe: 'C:\Users\User'
+
+- path: '../a/./../b/c.txt'
+  replacement: '!'
+  sanitize:
+    posix: '../a/./../b/c.txt'
+    universal: '../a/./../b/c.txt'
+    linux.safe: '../a/./../b/c.txt'
+    linux.esc.single: '../a/./../b/c.txt'
+    linux.esc.ansic: '../a/./../b/c.txt'
+    macos.safe: '../a/./../b/c.txt'
+    windows.exfat:
+      error: 'Invalid Windows path: Unix path'
+    windows.fat32:
+      error: 'Invalid Windows path: Unix path'
+    windows.ntfs:
+      error: 'Invalid Windows path: Unix path'
+    windows.safe:
+      error: 'Invalid Windows path: Unix path'
+
+- path: '../a/./../b/c.txt'
+  resolve: true
+  sanitize:
+    posix: '/users/b/c.txt'
+    universal: '/users/b/c.txt'
+    linux.safe: '/users/b/c.txt'
+    linux.esc.single: '/users/b/c.txt'
+    linux.esc.ansic: '/users/b/c.txt'
+    macos.safe: '/users/b/c.txt'
+    windows.exfat:
+      error: 'Invalid Windows path: Unix path'
+    windows.fat32:
+      error: 'Invalid Windows path: Unix path'
+    windows.ntfs:
+      error: 'Invalid Windows path: Unix path'
+    windows.safe:
+      error: 'Invalid Windows path: Unix path'
+
+- path: '..\a\.\..\b\c.txt'
+  replacement: '!'
+  sanitize:
+    posix:
+      error: 'Invalid Unix path: Windows path'
+    universal: '..\a\.\..\b\c.txt'
+    linux.safe:
+      error: 'Invalid Unix path: Windows path'
+    linux.esc.single:
+      error: 'Invalid Unix path: Windows path'
+    linux.esc.ansic:
+      error: 'Invalid Unix path: Windows path'
+    macos.safe:
+      error: 'Invalid Unix path: Windows path'
+    windows.exfat: '..\a\.\..\b\c.txt'
+    windows.fat32: '..\a\.\..\b\c.txt'
+    windows.ntfs: '..\a\.\..\b\c.txt'
+    windows.safe: '..\a\.\..\b\c.txt'
+
+- path: '..\a\.\..\b\c.txt'
+  resolve: true
+  sanitize:
+    posix:
+      error: 'Invalid Unix path: Windows path'
+    universal: 'C:\Users\b\c.txt'
+    linux.safe:
+      error: 'Invalid Unix path: Windows path'
+    linux.esc.single:
+      error: 'Invalid Unix path: Windows path'
+    linux.esc.ansic:
+      error: 'Invalid Unix path: Windows path'
+    macos.safe:
+      error: 'Invalid Unix path: Windows path'
+    windows.exfat: 'C:\Users\b\c.txt'
+    windows.fat32: 'C:\Users\b\c.txt'
+    windows.ntfs: 'C:\Users\b\c.txt'
+    windows.safe: 'C:\Users\b\c.txt'
+
+- path: './'
+  sanitize:
+    posix: './'
+    universal: './'
+    linux.safe: './'
+    linux.esc.single: './'
+    linux.esc.ansic: './'
+    macos.safe: './'
+    windows.exfat:
+      error: 'Invalid Windows path: Unix path'
+    windows.fat32:
+      error: 'Invalid Windows path: Unix path'
+    windows.ntfs:
+      error: 'Invalid Windows path: Unix path'
+    windows.safe:
+      error: 'Invalid Windows path: Unix path'
+
+- path: './'
+  resolve: true
+  sanitize:
+    posix: '/users/user/'
+    universal: '/users/user/'
+    linux.safe: '/users/user/'
+    linux.esc.single: '/users/user/'
+    linux.esc.ansic: '/users/user/'
+    macos.safe: '/users/user/'
+    windows.exfat:
+      error: 'Invalid Windows path: Unix path'
+    windows.fat32:
+      error: 'Invalid Windows path: Unix path'
+    windows.ntfs:
+      error: 'Invalid Windows path: Unix path'
+    windows.safe:
+      error: 'Invalid Windows path: Unix path'
+
+- path: '.\'
+  sanitize:
+    posix:
+      error: 'Invalid Unix path: Windows path'
+    universal: '.\'
+    linux.safe:
+      error: 'Invalid Unix path: Windows path'
+    linux.esc.single:
+      error: 'Invalid Unix path: Windows path'
+    linux.esc.ansic:
+      error: 'Invalid Unix path: Windows path'
+    macos.safe:
+      error: 'Invalid Unix path: Windows path'
+    windows.exfat: '.\'
+    windows.fat32: '.\'
+    windows.ntfs: '.\'
+    windows.safe: '.\'
+
+- path: '.\'
+  resolve: true
+  sanitize:
+    posix:
+      error: 'Invalid Unix path: Windows path'
+    universal: 'C:\Users\User\'
+    linux.safe:
+      error: 'Invalid Unix path: Windows path'
+    linux.esc.single:
+      error: 'Invalid Unix path: Windows path'
+    linux.esc.ansic:
+      error: 'Invalid Unix path: Windows path'
+    macos.safe:
+      error: 'Invalid Unix path: Windows path'
+    windows.exfat: 'C:\Users\User\'
+    windows.fat32: 'C:\Users\User\'
+    windows.ntfs: 'C:\Users\User\'
+    windows.safe: 'C:\Users\User\'
