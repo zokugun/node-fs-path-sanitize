@@ -7,7 +7,7 @@
 		"declaration": true,							/* Generates corresponding '.d.ts' file. */
 
 		/* Module Resolution Options */
-		"resolveJsonModule": true,						/* Enable importing .json files */
+		"resolveJsonModule": false,						/* Enable importing .json files */
 	},
 	"references": [
 		{

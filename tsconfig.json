@@ -11,4 +11,5 @@
 	"files": [
 		"package.json",
 	],
+	"extends": "./tsconfig.base.json"
 }
