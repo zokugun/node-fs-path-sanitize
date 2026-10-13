@@ -7,7 +7,7 @@
 [![Donation](https://img.shields.io/badge/donate-liberapay-green)](https://liberapay.com/daiyam/donate)
 [![Donation](https://img.shields.io/badge/donate-paypal-green)](https://paypal.me/daiyam99)
 
-> Sanitize filesystem paths and path segments to prevent directory traversal, invalid characters, and reserved names. Lightweight and compatible with both ESM and CommonJS.
+> Sanitize filesystem paths and path segments to prevent directory traversal, invalid characters, and reserved names.
 
 Features
 --------
@@ -24,33 +24,169 @@ Installation
 npm add @zokugun/fs-path-sanitize
 ```
 
-Quick Start
------------
+Examples
+--------
 
-```ts
-import { sanitizePath, sanitizeSegment } from '@zokugun/fs-path-sanitize';
+### 1. Validate before writing
 
-console.log(sanitizePath('../etc/passwd')); // sanitized, safe path
-console.log(sanitizeSegment('con\0'));    // sanitized segment
+Check safety first, then read the error if it fails.
+
+```typescript
+import { isSafePath, validatePath } from '@zokugun/fs-path-sanitize';
+
+function demoValidatePosix(): void {
+   const path = '/var/log/app:log';
+
+   if(!isSafePath(path, 'universal')) {
+      const result = validatePath(path, 'universal');
+
+      console.log(result.error);
+
+      return;
+   }
+
+   console.log('path is safe');
+}
+```
+
+### 2. Sanitize a user path for Windows
+
+Sanitize a filename and replace illegal characters with `_`.
+
+```typescript
+import { sanitizePath } from '@zokugun/fs-path-sanitize';
+
+function demoSanitizeWindows(): void {
+   const input = 'my file:report?.txt';
+   const result = sanitizePath(input, {
+      target: 'windows.safe',
+      replacement: '_'
+   });
+
+   if(result.fails) {
+      console.log('sanitize failed');
+      console.log(result.error);
+
+      return;
+   }
+
+   console.log(result.value);
+}
+```
+
+### 3. Customize sanitization with listeners
+
+Use `ReplaceHandler` and `EmptyHandler` to control leading, trailing and empty results.
+
+```typescript
+import { EmptyHandler, ReplaceHandler, Sanitizer } from '@zokugun/fs-path-sanitize';
+
+function demoCustomSanitize(): void {
+   const sanitizer = new Sanitizer({
+      target: 'windows.fat32',
+      replacement: '-',
+      onLeading: ReplaceHandler.addLeadingUnderscore,
+      onTrailing: ReplaceHandler.addTrailingUnderscore,
+      onEmpty: EmptyHandler.addReplacement
+   });
+   const segment = '  .con';
+   const output = sanitizer.sanitizeSegment(segment);
+
+   console.log(output);
+}
 ```
 
 API reference
 -------------
 
-- `isSafePath(path: string, target?: Target | 'auto'): boolean`: Check if a path is safe.
-- `isSafeSegment(segment: string, target?: Target | 'auto'): boolean`: Check if a single path segment is safe.
-- `sanitizePath(path: string, options?: { absolute?: boolean; parent?: string | null; replacement?: string | null; resolve?: Resolver | null; target?: Target | 'auto' }): DResult<string>`: Sanitize a path and return a result or error.
-- `sanitizeSegment(segment: string, options?: { replacement?: string | null; target?: Target | 'auto' }): string`: Sanitize a single segment.
-- `validatePath(path: string, target?: Target | 'auto'): DResult<string>`: Validate a path; returns `ok(path)` or `err(message)`.
-- `validateSegment(segment: string, target?: Target | 'auto'): DResult<string>`: Validate a segment; returns `ok(segment)` or `err(message)`.
-- `Sanitizer`: Class. Obtain with `Sanitizer.getInstance(target: Target)`. Instance methods: `isSafePath`, `isSafeSegment`, `sanitizePath`, `sanitizeSegment`, `validatePath`, `validateSegment`.
-- Types and handlers:
-    - `Target`: supported target strings (see src/target.ts).
-    - `Resolver`: `(path: string) => string` or `(path: string, separator: string) => string`.
-    - `ReplaceListener`, `EmptyListener`: listener function types. Default handlers: `ReplaceHandler`, `EmptyHandler`.
+### Validation
 
-Targets
--------
+Use these functions to determine if a path or segment is safe for a given target.
+
+#### `isSafePath(path: string, target?: Target | 'auto'): boolean`
+
+Checks if the entire path is safe. Returns `true` if no violations are found.
+
+- `path`: The path string to check.
+- `target`: The filesystem target (e.g., `'windows.ntfs'`, `'posix'`). Use `'auto'` to detect the current OS automatically.
+
+#### `isSafeSegment(segment: string, target?: Target | 'auto'): boolean`
+
+Checks if a single path segment is safe.
+
+#### `validatePath(path: string, target?: Target | 'auto'): Result<string, string>`
+
+Validates the path. Returns a result indicating success or the specific reason for failure.
+
+#### `validateSegment(segment: string, target?: Target | 'auto'): Result<string, string>`
+
+Validates a single segment. Returns a result indicating success or failure.
+
+### Sanitization
+
+Use these functions to remove or replace unsafe characters and keywords.
+
+#### `sanitizePath(path: string, options: {...}): Result<string, string>`
+
+Cleans a path based on the target rules.
+
+- `path`: The string path to sanitize.
+- `options`: An object containing:
+   - `absolute?: boolean`: Whether the path is absolute.
+   - `parent?: string | null`: Parent directory path.
+   - `replacement?: string | null`: String to use as a replacement for invalid characters.
+   - `resolve?: Resolver | null`: A resolver function to handle path logic.
+   - `target?: Target | 'auto'`: The filesystem target or `'auto'`.
+
+> [!NOTE]
+>
+> Sanitizing a path removes dangerous characters, but it does not guarantee the resulting string is safe for shell execution without further quoting or escaping.
+>
+> Path sanitization supports relative paths. So relative components (`.` / `..`) aren't rejected.<br />
+> Use `absolute: true` or pass a `resolve` function to prevent the directory traversal due to those components.
+
+#### `sanitizeSegment(segment: string, options: {...}): string`
+
+Cleans a single segment.
+
+- `path`: The string segment to sanitize.
+- `options`: An object containing:
+   - `replacement?: string | null`: String to use as a replacement for invalid characters.
+   - `target?: Target | 'auto'`: The filesystem target or `'auto'`.
+
+### Class: `Sanitizer`
+
+The underlying engine. The standalone functions use this class internally via the singleton `getInstance`.<br />
+You can instantiate it directly if you need persistent configuration or advanced listeners.
+
+```ts
+class Sanitizer {
+   static getInstance(target: Target): Sanitizer
+   constructor(options: {
+      additionalKeywords?: RegExp[] | null;
+      maxLength?: number | null;
+      minLength?: number | null;
+      onEmpty?: EmptyListener | null;
+      onKeyword?: ReplaceListener | null;
+      onLeading?: ReplaceListener | null;
+      onTrailing?: ReplaceListener | null;
+      replacement?: string | null;
+      target?: Target | null;
+   })
+   isSafePath(path: string): boolean
+   isSafeSegment(segment: string): boolean
+   sanitizePath(path: string, options?: { absolute?: boolean; replacement?: string | null; resolve?: Resolver | null }): Result<string, string>
+   sanitizeSegment(segment: string, options?: { replacement?: string | null }): string
+   validatePath(path: string): Result<string, string>
+   validateSegment(segment: string): Result<string, string>
+}
+```
+
+### Types
+
+#### Target
+
+A union of strings representing specific filesystem configurations:
 
 | Target                  | Purpose                                                                         |
 | ----------------------- | ------------------------------------------------------------------------------- |
@@ -71,11 +207,36 @@ Targets
 | `windows.fat32`         | FAT32 safe preset                                                               |
 | `windows.ntfs`          | NTFS safe preset                                                                |
 
-Shell Targets
--------------
 
-- `*.esc.ansic`: allows the file (`file\nname.txt`) in `touch $'file\nname.txt'` to be considered safe.
-- `*.esc.single`: allows the file (`*file.txt`) in `touch '*file.txt'` or `touch \*file.txt` to be considered safe.
+##### Shell Targets
+
+- `*.esc.ansic`: allows the path (`file\nname.txt`) in `touch $'file\nname.txt'` to be considered safe.
+- `*.esc.single`: allows the path (`*file.txt`) in `touch '*file.txt'` or `touch \*file.txt` to be considered safe.
+
+#### Resolver
+
+```typescript
+type Resolver = ((path: string) => string) | ((path: string, separator: string) => string);
+```
+
+A function used to resolve or transform a path before it is sanitized.
+
+#### Listeners
+
+These types define how the sanitizer handles replacements.
+
+```typescript
+// Returns a string when a segment becomes empty.
+type EmptyListener = (replacement: string) => string
+
+// Determines the replacement string based on the match and current replacement value.
+type ReplaceListener = (args: ReplacerArray, replacement: string) => string
+```
+
+`EmptyHandler.addReplacement`, `addUnderscore`, `addExclamation`<br />
+`ReplaceHandler.addLeadingExclamation`, `addTrailingUnderscore`, etc.
+
+Use them as `onEmpty`, `onKeyword`, `onLeading`, `onTrailing` when constructing a `Sanitizer` directly.
 
 Restricted Characters
 ---------------------
