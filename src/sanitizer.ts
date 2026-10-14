@@ -569,6 +569,10 @@ export class Sanitizer {
 
 		if(absolute) {
 			for(const segment of segments) {
+				if(segment === '.' || segment === '..') {
+					return err(`Invalid relative path: ${path}`);
+				}
+
 				result.push(this.sanitizeSegment(segment, { replacement }));
 			}
 		}
@@ -625,6 +629,10 @@ export class Sanitizer {
 
 		if(absolute) {
 			for(const segment of segments) {
+				if(segment === '.' || segment === '..') {
+					return err(`Invalid relative path: ${path}`);
+				}
+
 				result.push(this.sanitizeSegment(segment, { replacement }));
 			}
 		}
@@ -649,6 +657,10 @@ export class Sanitizer {
 
 		if(absolute) {
 			for(const segment of segments) {
+				if(segment === '.' || segment === '..') {
+					return err(`Invalid relative path: ${path}`);
+				}
+
 				result.push(this.sanitizeSegment(segment, { replacement }));
 			}
 		}

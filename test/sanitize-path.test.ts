@@ -65,6 +65,7 @@ else {
 					onTrailing?: string;
 					replacement?: string;
 					resolve?: boolean;
+					absolute?: boolean;
 					sanitize: {
 						'posix': string;
 						'universal': string;
@@ -115,6 +116,7 @@ else {
 							const result = sanitizePath(test.path, {
 								replacement: test.replacement,
 								resolve: test.resolve ? resolve : null,
+								absolute: test.absolute,
 								target,
 							});
 

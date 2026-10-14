@@ -1,0 +1,58 @@
+- path: '../../../etc/passwd'
+  sanitize:
+    posix: '../../../etc/passwd'
+    universal: '../../../etc/passwd'
+    linux.safe: '../../../etc/passwd'
+    linux.esc.single: '../../../etc/passwd'
+    linux.esc.ansic: '../../../etc/passwd'
+    macos.safe: '../../../etc/passwd'
+    windows.exfat:
+      error: 'Invalid Windows path: Unix path'
+    windows.fat32:
+      error: 'Invalid Windows path: Unix path'
+    windows.ntfs:
+      error: 'Invalid Windows path: Unix path'
+    windows.safe:
+      error: 'Invalid Windows path: Unix path'
+
+- path: '../../../etc/passwd'
+  resolve: true
+  sanitize:
+    posix: '/etc/passwd'
+    universal: '/etc/passwd'
+    linux.safe: '/etc/passwd'
+    linux.esc.single: '/etc/passwd'
+    linux.esc.ansic: '/etc/passwd'
+    macos.safe: '/etc/passwd'
+    windows.exfat:
+      error: 'Invalid Windows path: Unix path'
+    windows.fat32:
+      error: 'Invalid Windows path: Unix path'
+    windows.ntfs:
+      error: 'Invalid Windows path: Unix path'
+    windows.safe:
+      error: 'Invalid Windows path: Unix path'
+
+- path: '../../../etc/passwd'
+  absolute: true
+  sanitize:
+    posix:
+      error: 'Invalid relative path: ../../../etc/passwd'
+    universal:
+      error: 'Invalid relative path: ../../../etc/passwd'
+    linux.safe:
+      error: 'Invalid relative path: ../../../etc/passwd'
+    linux.esc.single:
+      error: 'Invalid relative path: ../../../etc/passwd'
+    linux.esc.ansic:
+      error: 'Invalid relative path: ../../../etc/passwd'
+    macos.safe:
+      error: 'Invalid relative path: ../../../etc/passwd'
+    windows.exfat:
+      error: 'Invalid Windows path: Unix path'
+    windows.fat32:
+      error: 'Invalid Windows path: Unix path'
+    windows.ntfs:
+      error: 'Invalid Windows path: Unix path'
+    windows.safe:
+      error: 'Invalid Windows path: Unix path'
