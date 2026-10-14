@@ -138,12 +138,13 @@ Cleans a path based on the target rules.
    - `resolve?: Resolver | null`: A resolver function to handle path logic.
    - `target?: Target | 'auto'`: The filesystem target or `'auto'`.
 
-> [!NOTE]
+> [!WARNING]
 >
-> Sanitizing a path removes dangerous characters, but it does not guarantee the resulting string is safe for shell execution without further quoting or escaping.
+> `sanitizePath` removes dangerous characters, but it does not guarantee the resulting string is safe for shell execution without further quoting or escaping.
 >
-> Path sanitization supports relative paths. So relative components (`.` / `..`) aren't rejected.<br />
-> Use `absolute: true` or pass a `resolve` function to prevent the directory traversal due to those components.
+> By default, relative paths are allowed and `.` / `..` segments are preserved.<br />
+> Set `absolute: true` to reject these segments.<br />
+> Alternatively, provide `resolve` to transform the path before sanitization. `.` / `..` segments in the resolved path are then rejected.
 
 #### `sanitizeSegment(segment: string, options: {...}): string`
 
