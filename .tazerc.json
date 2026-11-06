@@ -2,6 +2,7 @@
 	"exclude": [
 		"commitlint/cli",
 		"@commitlint/config-conventional",
+		"katex",
 		"lint-staged",
 		"release-it"
 	],
