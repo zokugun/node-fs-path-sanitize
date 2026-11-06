@@ -33,7 +33,7 @@ else {
 		}
 
 		const filePath = file.value.path;
-		const groupName = path.basename(filePath, '.yml').slice(9);
+		const groupName = path.basename(filePath, '.yml').slice(14);
 		const readResult = fse.readFile(filePath, 'utf8');
 		const manifestResult = xtry(() => YAML.parse(readResult.value!) as unknown);
 
