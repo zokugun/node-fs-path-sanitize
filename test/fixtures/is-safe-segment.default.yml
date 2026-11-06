@@ -1,0 +1,38 @@
+- segment: "error-log.txt"
+  safe:
+    posix: true
+    universal: true
+    linux.safe: true
+    linux.esc.single: true
+    linux.esc.ansic: true
+    macos.safe: true
+    windows.exfat: true
+    windows.fat32: true
+    windows.ntfs: true
+    windows.safe: true
+
+- segment: "\0e?r*r:o<r>-lo/<g>.txt"
+  safe:
+    posix: false
+    universal: false
+    linux.safe: false
+    linux.esc.single: false
+    linux.esc.ansic: false
+    macos.safe: false
+    windows.exfat: false
+    windows.fat32: false
+    windows.ntfs: false
+    windows.safe: false
+
+- segment: "exec-relpath-"
+  safe:
+    posix: true
+    universal: true
+    linux.safe: true
+    linux.esc.single: true
+    linux.esc.ansic: true
+    macos.safe: true
+    windows.exfat: true
+    windows.fat32: true
+    windows.ntfs: true
+    windows.safe: true
