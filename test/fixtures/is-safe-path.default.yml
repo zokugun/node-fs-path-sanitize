@@ -1,0 +1,69 @@
+- path: '/a/b/c.txt'
+  safe:
+    posix: true
+    universal: true
+    linux.safe: true
+    linux.esc.single: true
+    linux.esc.ansic: true
+    macos.safe: true
+    windows.exfat: false
+    windows.fat32: false
+    windows.ntfs: false
+    windows.safe: false
+
+- path: 'C:\Users\'
+  safe:
+    posix: false
+    universal: true
+    linux.safe: false
+    linux.esc.single: false
+    linux.esc.ansic: false
+    macos.safe: false
+    windows.exfat: true
+    windows.fat32: true
+    windows.ntfs: true
+    windows.safe: true
+
+
+- path: 'C:\abc\$Extend'
+  safe:
+    universal: false
+    windows.exfat: true
+    windows.fat32: true
+    windows.ntfs: true
+    windows.safe: true
+
+- path: 'C:\$Extend_'
+  safe:
+    universal: true
+    windows.exfat: true
+    windows.fat32: true
+    windows.ntfs: true
+    windows.safe: true
+
+- name: empty
+  path: ''
+  safe:
+    posix: true
+    universal: true
+    linux.safe: true
+    linux.esc.single: true
+    linux.esc.ansic: true
+    macos.safe: true
+    windows.exfat: true
+    windows.fat32: true
+    windows.ntfs: true
+    windows.safe: true
+
+- path: 'abc'
+  safe:
+    posix: true
+    universal: true
+    linux.safe: true
+    linux.esc.single: true
+    linux.esc.ansic: true
+    macos.safe: true
+    windows.exfat: true
+    windows.fat32: true
+    windows.ntfs: true
+    windows.safe: true

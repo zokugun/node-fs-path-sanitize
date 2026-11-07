@@ -268,12 +268,20 @@ export class Sanitizer {
 		let segments: string[];
 
 		if(this.hasFeature(Feature.Windows)) {
-			const match = WINDOWS_DRIVE.exec(path);
-			if(!match) {
+			if(path.includes('/')) {
 				return err('Invalid Windows path: Unix path');
 			}
 
-			segments = match[1].split(this._separator);
+			const match = WINDOWS_DRIVE.exec(path);
+
+			if(match) {
+				const [,, drivelessPath] = match;
+
+				segments = drivelessPath.split(this._separator);
+			}
+			else {
+				segments = path.split(this._separator);
+			}
 
 			if(segments.length === 0) {
 				return ok(path);
@@ -287,7 +295,9 @@ export class Sanitizer {
 			const match = WINDOWS_DRIVE.exec(path);
 
 			if(match) {
-				segments = match[1].split('\\');
+				const [,, drivelessPath] = match;
+
+				segments = drivelessPath.split('\\');
 
 				if(segments.length === 0) {
 					return ok(path);
