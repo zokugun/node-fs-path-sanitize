@@ -5,8 +5,8 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog][keepachangelog], and this project adheres to [Semantic Versioning][semver].
 
-[Unreleased]
-------------
+[v0.2.2] | 2026-11-07
+---------------------
 
 ### Fixed
 
@@ -37,7 +37,8 @@ The format is based on [Keep a Changelog][keepachangelog], and this project adhe
 
 [keepachangelog]: https://keepachangelog.com/en/2.0.0/
 [semver]: https://semver.org/spec/v2.0.0.html
-[unreleased]: https://github.com/zokugun/node-fs-path/compare/v0.2.1...HEAD
-[v0.2.1]: https://github.com/zokugun/node-fs-path/releases/tag/v0.2.1
-[v0.2.0]: https://github.com/zokugun/node-fs-path/releases/tag/v0.2.0
-[v0.1.0]: https://github.com/zokugun/node-fs-path/releases/tag/v0.1.0
+[unreleased]: https://github.com/zokugun/node-fs-path-sanitize/compare/v0.2.2...HEAD
+[v0.2.2]: https://github.com/zokugun/node-fs-path-sanitize/releases/tag/v0.2.2
+[v0.2.1]: https://github.com/zokugun/node-fs-path-sanitize/releases/tag/v0.2.1
+[v0.2.0]: https://github.com/zokugun/node-fs-path-sanitize/releases/tag/v0.2.0
+[v0.1.0]: https://github.com/zokugun/node-fs-path-sanitize/releases/tag/v0.1.0
